@@ -63,8 +63,8 @@ public class PlatformSpawner : MonoBehaviour
                 else
                     newPlatform = Instantiate(breakable_Platform, temp, Quaternion.identity);
             }
-            
-            platform_Spawn_Count = 0;
+            else
+                platform_Spawn_Count = 0;
 
             if (newPlatform != null)
                 newPlatform.transform.parent = transform;
