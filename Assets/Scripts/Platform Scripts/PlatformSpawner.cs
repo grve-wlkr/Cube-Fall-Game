@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
 {
-    public GameObject platform_Prefab;
-    public GameObject spike_Platform_Prefab;
-    public GameObject breakable_Platform;
-    public GameObject[] moving_Platform;
+    [SerializeField] private GameObject platform_Prefab;
+    [SerializeField] private GameObject spike_Platform_Prefab;
+    [SerializeField] private GameObject breakable_Platform;
+    [SerializeField] private GameObject[] moving_Platform;
 
-    public float platform_Spawn_Timer = 1.8f;
+    [SerializeField] private float platform_Spawn_Timer = 1.8f;
     private float current_Platform_Spawn_Timer;
 
     private int platform_Spawn_Count;
 
-    public float min_X = -2f, max_X = 2f;
+    [SerializeField] private float min_X = -2f, max_X = 2f;
 
     private void Start()
     {

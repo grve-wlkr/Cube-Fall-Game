@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlatformScript : MonoBehaviour
 {
-    public float move_Speed = 2f;
-    public float bound_Y = 6f;
+    [SerializeField] private float move_Speed = 2f;
+    [SerializeField] private float bound_Y = 6f;
 
-    public bool moving_Platform_Left, moving_Platform_Right, is_Breakable, is_Spike, is_Platform;
+    [SerializeField] private bool moving_Platform_Left, moving_Platform_Right, is_Breakable, is_Spike, is_Platform;
 
     private Animator anim;
 
