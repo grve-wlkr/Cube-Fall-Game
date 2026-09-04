@@ -34,7 +34,19 @@ public class PlayerBounds : MonoBehaviour
                 // GameManager.instance.RestartGame();
             }
         }
-    }
+    } // check bounds
+
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "TopSpike")
+        {
+            transform.position = new Vector2(1000f, 1000f);
+            // SoundManager.instance.DeathSound();
+            // GameManager.instance.RestartGame();
+        }
+    } // on trigger enter
+
+
 
 
 
