@@ -17,6 +17,12 @@ public class PlatformScript : MonoBehaviour
             anim = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        // Dynamic top deletion Y bound
+        bound_Y = Camera.main.ViewportToWorldPoint(new Vector3(0, 1.1f, 0)).y;
+    }
+
     private void Update()
     {
         Move();

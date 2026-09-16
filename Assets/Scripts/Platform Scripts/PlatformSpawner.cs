@@ -9,16 +9,23 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] private GameObject breakable_Platform;
     [SerializeField] private GameObject[] moving_Platform;
 
-    [SerializeField] private float platform_Spawn_Timer = 1.8f;
+    [SerializeField] private float platform_Spawn_Timer = 1.5f;
     private float current_Platform_Spawn_Timer;
 
     private int platform_Spawn_Count;
 
-    [SerializeField] private float min_X = -2f, max_X = 2f;
+    [SerializeField] private float min_X = -1.5f, max_X = 1.5f;
 
     private void Start()
     {
         current_Platform_Spawn_Timer = platform_Spawn_Timer;
+
+        // Dynamically set X bounds to fit any screen resolution
+        Vector3 leftBound = Camera.main.ViewportToWorldPoint(new Vector3(0.15f, 0f, 0f));
+        Vector3 rightBound = Camera.main.ViewportToWorldPoint(new Vector3(0.85f, 0f, 0f));
+
+        min_X = leftBound.x;
+        max_X = rightBound.x;
     }
 
     private void Update()
