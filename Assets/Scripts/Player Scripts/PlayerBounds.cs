@@ -1,53 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBounds : MonoBehaviour
 {
-    [SerializeField] private float min_X = -2.6f, max_X = 2.6f, min_Y = -5.6f;
-    private bool out_Of_Bounds;
+    [Header("Bounds Settings")]
+    [SerializeField] private bool useDynamicBounds = true;
+    [SerializeField] private float min_X = -1.6f, max_X = 1.6f, min_Y = -5.6f;
 
-    private void Update()
+    [Header("Dynamic Padding")]
+    [SerializeField] private float xPadding = 0.3f;
+    [SerializeField] private float bottomOffset = 0.5f;
+
+    private bool isDead;
+
+    private void Start()
     {
-        CheckBounds();
+        if (!useDynamicBounds || Camera.main == null) return;
+
+        Camera cam = Camera.main;
+        float halfWidth = cam.orthographicSize * cam.aspect;
+
+        min_X = -halfWidth + xPadding;
+        max_X = halfWidth - xPadding;
+        min_Y = cam.transform.position.y - cam.orthographicSize - bottomOffset;
     }
+
+    private void Update() => CheckBounds();
 
     private void CheckBounds()
     {
-        Vector2 temp = transform.position;
+        Vector2 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, min_X, max_X);
+        transform.position = pos;
 
-        if (temp.x > max_X)
-            temp.x = max_X;
-        
-        if (temp.x < min_X)
-            temp.x = min_X;
-
-        transform.position = temp;
-
-        if (temp.y <= min_Y)
-        {
-            if (!out_Of_Bounds)
-            {
-                out_Of_Bounds = true;
-
-                SoundManager.instance.DeathSound();
-                GameManager.instance.RestartGame();
-            }
-        }
-    } // check bounds
+        if (pos.y <= min_Y) TriggerDeath();
+    }
 
     private void OnTriggerEnter2D(Collider2D target)
     {
-        if (target.tag == "TopSpike")
-        {
-            transform.position = new Vector2(1000f, 1000f);
-            SoundManager.instance.DeathSound();
-            GameManager.instance.RestartGame();
-        }
-    } // on trigger enter
+        if (target.CompareTag("TopSpike")) TriggerDeath();
+    }
 
+    private void TriggerDeath()
+    {
+        if (isDead) return;
+        isDead = true;
 
-
-
-
-} // class
+        SoundManager.instance.DeathSound();
+        GameManager.instance.RestartGame();
+    }
+}
