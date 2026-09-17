@@ -1,4 +1,4 @@
-A 2D endless vertical platformer game.
+A 2D endless vertical platformer auto-scroll game.
 The objective is to guide the player down a continuous descent while platforms constantly scroll upward. 
 Survival depends on quick reflexes and landing on the right surfaces while avoiding hazards.
 
