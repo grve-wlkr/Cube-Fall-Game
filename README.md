@@ -14,3 +14,5 @@ Platform Variety & Hazards (PlatformScript.cs):
 
 Continuous Scrolling (BG_Scroll.cs): 
 Smooth vertical background scrolling that creates a seamless sense of continuous motion and urgency.
+
+etc.....
