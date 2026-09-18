@@ -57,7 +57,7 @@ public class PlatformScript : MonoBehaviour
             {
                 target.transform.position = new Vector2(1000f, 1000f);
                 SoundManager.instance.GameOverSound();
-                GameManager.instance.RestartGame();
+                GameManager.instance.GameOver();
             }
         }
     } // on trigger enter

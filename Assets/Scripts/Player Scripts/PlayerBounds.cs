@@ -46,6 +46,6 @@ public class PlayerBounds : MonoBehaviour
         isDead = true;
 
         SoundManager.instance.DeathSound();
-        GameManager.instance.RestartGame();
+        GameManager.instance.GameOver();
     }
 }
